@@ -13,8 +13,8 @@ const backpack = {
   color: "grey",
   pocketNum: 15,
   strapLength: {
-    left: 26,
-    right: 26,
+    left: 6,
+    right: 10,
   },
   toggleLid: function (lidStatus) {
     this.lidOpen = lidStatus;
@@ -24,3 +24,17 @@ const backpack = {
     this.strapLength.right = lengthRight;
   },
 };
+
+console.log("The backpack object:", backpack);
+
+console.log("Pocketnum Value:", backpack.pocketNum);
+
+console.log("Left before:", backpack.strapLength.left);
+
+console.log("Right before:", backpack.strapLength.right);
+
+backpack.newStrapLength(23, 31);
+
+console.log("Left after:", backpack.strapLength.left);
+
+console.log("Right after:", backpack.strapLength.right);

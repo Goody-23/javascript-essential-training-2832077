@@ -3,8 +3,121 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Object methods</title>
-    <script src="script.js" defer></script>
+    <title>Compliments</title>
+    <style>
+      body {
+        position: relative;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        background-color: pink;
+      }
+
+      #clickMeButton {
+        position: absolute;
+        top: 400px;
+        left: 650px;
+        z-index: 999;
+      }
+      #respondForm {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: purple;
+      }
+      #respondForm label {
+        color: white;
+      }
+      #respondForm input,
+      #respondForm button {
+        margin: 5px 0;
+      }
+      #newPrompt {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+      }
+    </style>
   </head>
-  <body></body>
+  
+  <body>
+    <button id="clickMeButton">Click Me</button>
+    
+
+    <form id="respondForm">
+      <label for="Respond">Respond: </label>
+      <input type="text" name="Respond" id="Respond" />
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+  <script>
+  
+     const clickMeButton =  document.getElementById("clickMeButton")
+     const respondForm = document.getElementById("respondForm");
+     
+
+     
+       clickMeButton.addEventListener("click", function () {
+          clickMeButton.style.display = "none";
+          const promptElement = document.createElement("div");
+          promptElement.textContent = "You look really good today";
+          promptElement.style.position = "absolute";
+          promptElement.style.top = "290px";
+          promptElement.style.left = "620px";
+          promptElement.style.backgroundColor = "lightblue";
+          promptElement.style.padding = "10px";
+          promptElement.style.backgroundImage =
+            "url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fvector%2Fpixel-art-of-flowers-gm1127138346-296970892&psig=AOvVaw0UcD-DmTZA7LvtRSw6fAzw&ust=1707334511306000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCLCAtO66l4QDFQAAAAAdAAAAABAN')";
+          promptElement.style.border = "1px solid #ccc";
+          promptElement.style.borderRadius = "5px";
+          document.body.appendChild(promptElement);
+
+
+          respondForm.style.display = "flex";
+        });
+    
+
+    
+
+       respondForm.addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const responseInput = document.getElementById("Respond");
+          const responseText = responseInput.value;
+          console.log("Response Text:", responseText);
+          const newPrompt = document.createElement("div");
+          newPrompt.style.display = "block";
+          newPrompt.textContent = "You said: " + responseText;
+          clickMeButton.textContent = newPrompt.textContent
+          newPrompt.style.position = "absolute";
+          newPrompt.style.top = "50%";
+          newPrompt.style.left = "50%";
+          newPrompt.style.transform = "translate(-50%, -50%)";
+          newPrompt.style.padding = "20px";
+          newPrompt.style.border = "1px solid #ccc";
+          newPrompt.style.borderRadius = "5px";
+          newPrompt.style.backgroundColor = "purple";
+
+          const closeButton = document.createElement("button");
+          closeButton.textContent = "Close";
+          closeButton.addEventListener("click", function () {
+            document.body.removeChild(newPrompt);
+            const clickMeButton = document.getElementById("clickMeButton");
+            clickMeButton.style.display = "block";
+          });
+          newPrompt.appendChild(closeButton);
+          document.body.appendChild(newPrompt);
+        });
+    </script>
 </html>
